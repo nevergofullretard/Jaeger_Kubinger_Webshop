@@ -26,7 +26,7 @@ namespace Jaeger_Kubinger_Webshop
             //   new Adress(InputToString("Straße:"), InputToInt("Hausnummer:", 10000), InputToInt("PLZ:", 10000), InputToString("Ort:")))
             User = new User("Max", "Kubinger", DateTime.Now, new Adress("Musterstraße", 1, 1020, "Wien"));
             //Console.WriteLine($"-------------------------\nHallo {User.Name}! Viel Spaß beim Shoppen!\n--------------------------\n{Shop.ToString()}");
-
+            //test
         }
 
         public void RunShop()
