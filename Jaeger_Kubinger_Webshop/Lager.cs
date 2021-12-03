@@ -12,15 +12,15 @@ namespace Jaeger_Kubinger_Webshop
 
         public Product[] Products { get; set; }
         
-        public Lager(int NumOfProducts)
+        public Lager(Product[] Products)
         {
-            _Products = new Product[NumOfProducts];
+            _Products = Products;
         }
 
         public override string ToString()
         {
             string OutPutString = "Artikel im Webshop: \n";
-            foreach (var item in Products)
+            foreach (var item in _Products)
             {
                 OutPutString += item.ToString() + "\n";
             }
