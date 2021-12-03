@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Jaeger_Kubinger_Webshop
 {
-    class Shop
+    class Lager
     {
         Product[] _Products;
 
         public Product[] Products { get; set; }
         
-        public Shop(int NumOfProducts)
+        public Lager(int NumOfProducts)
         {
             _Products = new Product[NumOfProducts];
         }

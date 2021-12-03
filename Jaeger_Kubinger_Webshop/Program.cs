@@ -8,7 +8,7 @@ namespace Jaeger_Kubinger_Webshop
 {
     internal class Program
     {
-        static void MainMenu(User User, Cart Cart, Shop Shop)
+        static void MainMenu(User User, Cart Cart, Lager Shop)
         {
             
             switch (InputToInt("----------------\n   Hauptmenü \n---------------- \n[1] Nutzerdaten ändern \n[2] Produkt zum Warenkorb hinzufügen " +
@@ -82,7 +82,7 @@ namespace Jaeger_Kubinger_Webshop
         static void Main(string[] args)
         {
             Console.WriteLine("\nWillkommen im Webshop JÄGINGER! Feel free to choose! \n");
-            Shop Webshop = new Shop(2);
+            Lager Webshop = new Lager(2);
             Webshop.Products = new Product[] { new Product("Playmobil", 15), new Product("Lego", 20) };
             //Console.WriteLine(Webshop.ToString());
             //Console.WriteLine("Bitte hier registrieren: \n ------------------------------");

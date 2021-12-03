@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Adress.cs" />
     <Compile Include="Cart.cs" />
-    <Compile Include="Shop.cs" />
+    <Compile Include="Lager.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Product.cs" />
