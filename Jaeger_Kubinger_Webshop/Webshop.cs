@@ -26,7 +26,7 @@ namespace Jaeger_Kubinger_Webshop
             //   new Adress(InputToString("Straße:"), InputToInt("Hausnummer:", 10000), InputToInt("PLZ:", 10000), InputToString("Ort:")))
             User = new User("Max", "Kubinger", DateTime.Now, new Adress("Musterstraße", 1, 1020, "Wien"));
             //Console.WriteLine($"-------------------------\nHallo {User.Name}! Viel Spaß beim Shoppen!\n--------------------------\n{Shop.ToString()}");
-            //test
+            //test234
         }
 
         public void RunShop()
@@ -36,7 +36,7 @@ namespace Jaeger_Kubinger_Webshop
             {
                 switch (InputToInt("----------------\n   Hauptmenü \n---------------- \n[1] Nutzerdaten ändern \n[2] Produkt zum Warenkorb hinzufügen " +
                    "\n[3] Warenkorb anzeigen \n[4] Produkt aus Warenkorb löschen " +
-                   "\n[5] Shop anzeigen \n[6] Bestellung abschließen", 6))
+                   "\n[5] Shop anzeigen \n[6] Bestellung abschließen \n[7] Shop verlassen", 7))
                 {
 
                     case 1: // Nutzerdaten ändern: könnten alle möglichen Inputs sein, wir machen nur name und adresse
@@ -68,6 +68,9 @@ namespace Jaeger_Kubinger_Webshop
                         break;
                     case 6: //Bestellung abschließen
                             //Cart.CompleteOrder()
+                        break;
+                    case 7:
+                        ContinueShopping = false;
                         break;
 
                 }
