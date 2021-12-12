@@ -6,25 +6,37 @@ using System.Threading.Tasks;
 
 namespace Jaeger_Kubinger_Webshop
 {
-    class Product
+    public class Product
     {
         string _Name;
         int _Preis;
         static ushort _Anzahl = 10000;
+        int _ArtikelNummer;
 
-
-        public string Name { get; set; }
-
-      public Product (string Name, int Preis)
+        public string Name { 
+            get { return _Name; } 
+            set { _Name = value; } 
+        }
+        public int Preis { 
+            get { return _Preis; } 
+            set { _Preis = value; } 
+        }
+        public int ArtikelNummer {
+            get { return _ArtikelNummer; } 
+            set { _ArtikelNummer = value;}
+        }
+        public Product(string Name, int Preis, int ArtikelNummer)
         {
-            _Name = Name;
-            _Preis = Preis;
+            this._Name = Name;
+            this._Preis = Preis;
+            this._ArtikelNummer = ArtikelNummer;
         }
 
         public override string ToString()
         {
-            return $"{_Name} |  Preis:{_Preis} Euro | Lagerstand: {_Anzahl}";
+            return $"{_Name} |  Preis:{_Preis} Euro | Lagerstand: {_Anzahl}| ArtikelNummer: {_ArtikelNummer}";
         }
-
+       
     }
+
 }

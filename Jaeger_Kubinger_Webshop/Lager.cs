@@ -16,6 +16,18 @@ namespace Jaeger_Kubinger_Webshop
         {
             _Products = Products;
         }
+
+        public Product getProduct(int article)
+        {
+            foreach (Product p in _Products)
+            {
+                if(p.ArtikelNummer == article)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
         
         //testöadsjf346
 

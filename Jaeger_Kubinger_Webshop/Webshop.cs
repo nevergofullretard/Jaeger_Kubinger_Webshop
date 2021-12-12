@@ -13,6 +13,7 @@ namespace Jaeger_Kubinger_Webshop
         public Lager Lager { get; private set; }
 
         public Cart Cart { get; private set; }
+        
 
         public Webshop (Lager lager)
         {
@@ -31,6 +32,7 @@ namespace Jaeger_Kubinger_Webshop
 
         public void RunShop()
         {
+            Cart = new Cart();
             bool ContinueShopping = true;
             while (ContinueShopping)
             {
@@ -55,13 +57,26 @@ namespace Jaeger_Kubinger_Webshop
                         break;
                     case 2: //Produkt zum Warenkorb hinzufügen
                             //Cart.AddToCart(Product, Anzahl)
-
+                        Console.WriteLine("Gib die ArtikelNummer des gewünschten Produkts ein um dieses in den Warenkorb zulegen.");
+                        string input =Console.ReadLine();
+                        Product pro = Lager.getProduct(int.Parse(input));
+                        if(pro == null)
+                        {
+                            Console.WriteLine("Ungültige Artikelnummer");
+                        }
+                        else
+                        {
+                            Console.WriteLine(pro.Name);
+                            Cart.AddToCart(pro);
+                        }
                         break;
                     case 3: //Warenkorb anzeigen
+                        Cart.showItems(Lager);
                             //Cart.ToString()
                         break;
                     case 4: //Produkt aus Warenkorb löschen
                             //Cart.DeleteProduct(Product, Anzahl)
+                        Cart.DeleteCart();
                         break;
                     case 5: //Shop/Produkte anzeigen
                         Console.WriteLine(Lager.ToString());
