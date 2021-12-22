@@ -8,27 +8,34 @@ namespace Jaeger_Kubinger_Webshop
 {
     class Adress
     {
-        string _Street;
-        int _Number;
-        string _City;
-        int _ZipCode;
+        
+        
 
+        public string Street { get; private set;}
+        public int Number { get; private set;}
+        public string City { get; private set;}
+        public int ZipCode { get;  set;}
 
-        public Adress(string Street, int Number, int ZipCode, string City)
+        public string GetCity()
         {
-            _Street = Street;
-            _Number = Number;
-            _City = City;
-            if (ZipCode < 10000) _ZipCode = ZipCode;
+            return City;
+        }
+
+        public Adress(string street, int number, int zipCode, string city)
+        {
+            Street = street;
+            Number = number;
+            City = city;
+            if (ZipCode < 10000) ZipCode = zipCode;
         }
         public bool Umzug(string NewStreet, int NewNumber, string NewCity, int NewZipCode)
         {
-            _Street = NewStreet;
-            _Number = NewNumber;
-            _City = NewCity;
+            Street = NewStreet;
+            Number = NewNumber;
+            City = NewCity;
             if (NewZipCode < 10000)
             {
-                _ZipCode = NewZipCode;
+                ZipCode = NewZipCode;
                 return true;
             }
             else return false;
@@ -37,7 +44,7 @@ namespace Jaeger_Kubinger_Webshop
         }
         public override string ToString()
         {
-            return $" {_Street} {_Number} \n {_ZipCode} {_City}";
+            return $" {Street} {Number} \n {ZipCode} {City}";
         }
     }
 }
