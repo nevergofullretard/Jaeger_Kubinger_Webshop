@@ -10,19 +10,24 @@ namespace Jaeger_Kubinger_Webshop
     {
         string _Surname;
         string _Name;
-         DateTime _Birthday; //dd.mm.jjjj
         Gender _Sex;
         State _State;
         string _Svn;
-        Adress _Adress;
+        
 
         public string Surname { get; set; } 
         public string Name { get; set; }
         public Gender Sex { get; set; } 
         public State State { get; set; }
         public Adress Adress { get; set; }
+        public DateTime Birthday { get; private set; }
+        public string Password { get; private set; }
+        public string Username { get;  set; }
 
-        
+        public DateTime GetBirthday()
+        {
+            return Birthday;
+        }
         public string Svn
         {
             get
@@ -36,26 +41,28 @@ namespace Jaeger_Kubinger_Webshop
                         " stimmt nicht mit Geburtsdatum überein");
             }
         }
-
-        public User(string name, string surname, DateTime birthday, Adress adress) 
+        public User()
         {
-            _Birthday = birthday;
-            Name = name;
-            Surname = surname;
+        }
+        public User(string username, DateTime birthday, Adress adress, string password) 
+        {
+            Birthday = birthday;
+            Username = username;
             Adress = adress;
+            Password = password;
         }
 
         public override string ToString()
         {
-            return $" Name: {Name}\n Nachname: {Surname} \n Geburtstag:{_Birthday}\n " +
+            return $" Username: {Username} \n Geburtstag:{Birthday}\n " +
                 $"Adresse: {Adress.ToString()}";
         }
 
         public bool PruefungSvn()
         {
-            if (_Birthday.Year > 1900)
+            if (Birthday.Year > 1900)
             {
-                string BirthdayString = _Birthday.ToString("dd") + _Birthday.ToString("MM") + _Birthday.ToString("yy");
+                string BirthdayString = Birthday.ToString("dd") + Birthday.ToString("MM") + Birthday.ToString("yy");
                 if (_Svn.Length == 10)
                 {
                     if (_Svn.EndsWith(BirthdayString)) return true;

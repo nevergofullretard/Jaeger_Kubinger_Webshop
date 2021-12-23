@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Jaeger_Kubinger_Webshop
 {
@@ -20,19 +21,61 @@ namespace Jaeger_Kubinger_Webshop
             Lager = lager;
         }
 
-        public void Login()
+        public User Login()
         {
+            User User = new User();
+            bool LoggedIn = false;
+            string RelativeFilePath = @"..\..\files\User.csv";
+             while (LoggedIn == false)
+            {
+                switch (InputToInt("----------------\n   Login-Page \n---------------- \n[1] Login \n[2] Register ", 2))
+                {
+                    case 1: //log in with existing data
+                        using (StreamReader sr = new StreamReader(RelativeFilePath))
+                        {
+                            string Username = InputToString("Username:");
+                            string Password = InputToString("Password");
+                            while (sr.EndOfStream == false)
+                            {
+                                string Line = sr.ReadLine();
+                                string[] LineData = Line.Split(';');
 
-            //Console.WriteLine("Bitte hier registrieren: \n ------------------------------");
-            //new User(InputToString("Vorname:"), InputToString("Nachname:"), InputToDate("Geburtstag:"),
-            //   new Adress(InputToString("Straße:"), InputToInt("Hausnummer:", 10000), InputToInt("PLZ:", 10000), InputToString("Ort:")))
-            User = new User("Max", "Kubinger", DateTime.Now, new Adress("Musterstraße", 1, 1020, "Wien"));
-            //Console.WriteLine($"-------------------------\nHallo {User.Name}! Viel Spaß beim Shoppen!\n--------------------------\n{Shop.ToString()}");
-            //test234
+                                if (LineData[0] == Username && LineData[6] == Password) 
+                                {
+                                    LoggedIn = true;
+                                    int Number;
+                                    int ZipCode;
+                                    DateTime Birthday;
+                                    DateTime.TryParse(LineData[1], out Birthday);
+                                    int.TryParse(LineData[5], out ZipCode);
+                                    int.TryParse(LineData[3], out Number);
+                                    User =  new User(LineData[0], Birthday, new Adress(LineData[2], Number, ZipCode, LineData[4]), LineData[6]);
+                                }
+                                
+                            }
+                        }
+                        break;
+                    case 2: //generate new data
+                        User = new User(InputToString("Username:"), InputToDate("Geburtstag:"),
+                        new Adress(InputToString("Straße:"), InputToInt("Hausnummer:", 10000), InputToInt("PLZ:", 10000),
+                        InputToString("Ort:")), InputToString("Passwort:"));
+                        //User = new User("kubinger", DateTime.Now, new Adress("Musterstraße", 1, 1020, "Wien"), "password");
+
+                        using (StreamWriter sw = new StreamWriter(RelativeFilePath, true))
+                        {
+
+                            sw.WriteLine($"{User.Username};{User.Birthday};{User.Adress.Street};" +
+                                $"{User.Adress.Number};{User.Adress.City};{User.Adress.ZipCode};{User.Password}");
+                        }
+                        LoggedIn = true;
+                        break;
+                }
+            }
+            return User;
+
         }
 
-
-        public void RunShop()
+        public void RunShop(User User)
         {
             Cart = new Cart();
             bool ContinueShopping = true;
@@ -45,11 +88,11 @@ namespace Jaeger_Kubinger_Webshop
 
                     case 1: // Nutzerdaten ändern: könnten alle möglichen Inputs sein, wir machen nur name und adresse
                         Console.WriteLine($"Dein jetziges Benutzerprofil: \n{User.ToString()}");
-                        switch (InputToInt("[1] Name und Nachname ändern\n[2] Adresse ändern", 2))
+                        switch (InputToInt("[1] Username ändern\n[2] Adresse ändern", 2))
                         {
                             case 1:
-                                User.Name = InputToString("Neuer Vorname:");
-                                User.Surname = InputToString("Neuer Nachname");
+                                User.Username = InputToString("Neuer Username:");
+                                
                                 break;
                             case 2:
                                 User.Adress = new Adress(InputToString("Neue Straße:"), InputToInt("Neue Hausnummer", 1000), InputToInt("Neue PLZ", 10000), InputToString("Neuer Ort:"));
