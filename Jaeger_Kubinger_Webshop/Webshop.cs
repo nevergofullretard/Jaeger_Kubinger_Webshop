@@ -21,17 +21,16 @@ namespace Jaeger_Kubinger_Webshop
             Lager = lager;
         }
 
-        public User Login()
+        public void Login(string FilePath)
         {
-            User User = new User();
+            
             bool LoggedIn = false;
-            string RelativeFilePath = @"..\..\files\User.csv";
              while (LoggedIn == false)
             {
                 switch (InputToInt("----------------\n   Login-Page \n---------------- \n[1] Login \n[2] Register ", 2))
                 {
                     case 1: //log in with existing data
-                        using (StreamReader sr = new StreamReader(RelativeFilePath))
+                        using (StreamReader sr = new StreamReader(FilePath))
                         {
                             string Username = InputToString("Username:");
                             string Password = InputToString("Password");
@@ -61,7 +60,7 @@ namespace Jaeger_Kubinger_Webshop
                         InputToString("Ort:")), InputToString("Passwort:"));
                         //User = new User("kubinger", DateTime.Now, new Adress("Musterstraße", 1, 1020, "Wien"), "password");
 
-                        using (StreamWriter sw = new StreamWriter(RelativeFilePath, true))
+                        using (StreamWriter sw = new StreamWriter(FilePath, true))
                         {
 
                             sw.WriteLine($"{User.Username};{User.Birthday};{User.Adress.Street};" +
@@ -71,11 +70,11 @@ namespace Jaeger_Kubinger_Webshop
                         break;
                 }
             }
-            return User;
+            
 
         }
 
-        public void RunShop(User User)
+        public void RunShop()
         {
             Cart = new Cart();
             bool ContinueShopping = true;

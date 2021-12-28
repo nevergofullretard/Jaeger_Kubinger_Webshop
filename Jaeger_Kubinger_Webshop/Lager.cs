@@ -72,5 +72,22 @@ namespace Jaeger_Kubinger_Webshop
 
             return Produkte.ToArray();
         }
+        public void SaveProducts(String FilePath)
+        {
+            string Header;
+            using (StreamReader sr = new StreamReader(FilePath))
+            {
+                Header = sr.ReadLine();
+            }
+            
+            using (StreamWriter sw = new StreamWriter(FilePath,false))
+            {
+                sw.WriteLine(Header);
+                foreach (var product in _Products)
+                {
+                    sw.WriteLine($"{product.ArtikelNummer};{product.Name};{product.Preis};{product.Anzahl}");
+                }
+            }
+        }
     }
 }

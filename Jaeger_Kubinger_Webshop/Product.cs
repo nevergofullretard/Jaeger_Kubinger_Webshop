@@ -25,6 +25,12 @@ namespace Jaeger_Kubinger_Webshop
             get { return _ArtikelNummer; } 
             set { _ArtikelNummer = value;}
         }
+        public int Anzahl
+        {
+            get { return _Anzahl; }
+            set { Anzahl = value; }
+        }
+
         public Product(string Name, double Preis, int ArtikelNummer, ushort Anzahl)
         {
             this._Name = Name;
