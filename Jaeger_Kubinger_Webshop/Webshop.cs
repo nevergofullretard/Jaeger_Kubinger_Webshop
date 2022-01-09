@@ -126,7 +126,8 @@ namespace Jaeger_Kubinger_Webshop
                         Console.WriteLine(Lager.ToString());
                         break;
                     case 6: //Bestellung abschließen
-                            //Cart.CompleteOrder()
+                        Cart.FinishOrder();
+                        Console.WriteLine("Vielen Dank für ihre Bestellung. Kommen sie gerne wieder.");
                         break;
                     case 7:
                         ContinueShopping = false;

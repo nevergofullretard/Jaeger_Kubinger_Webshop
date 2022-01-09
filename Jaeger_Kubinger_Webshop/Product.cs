@@ -10,7 +10,7 @@ namespace Jaeger_Kubinger_Webshop
     {
         string _Name;
         double _Preis;
-        ushort _Anzahl = 10000;
+        int _Anzahl = 10000;
         int _ArtikelNummer;
 
         public string Name { 
@@ -28,7 +28,7 @@ namespace Jaeger_Kubinger_Webshop
         public int Anzahl
         {
             get { return _Anzahl; }
-            set { Anzahl = value; }
+            set { _Anzahl = value; }
         }
 
         public Product(string Name, double Preis, int ArtikelNummer, ushort Anzahl)
